@@ -1,0 +1,287 @@
+:root {
+    --main-blue: #4E54FF;
+    --main-yellow: #F4E236;
+    --main-dark: #0E0E0E;
+    --blanco: #fff;
+    --main-font: Montserrat;
+    --shadows-text: 0px 0px 10px rgba(0, 0, 0, 0.288);
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    font-family: Montserrat;
+    background-color: var(--main-dark);
+}
+
+header {
+    height: 200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 30% 20% 15% 15%;
+    grid-template-rows: 100px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--main-yellow);
+}
+
+
+/* Contenedor del cuadro de busqueda */
+
+.contenedorInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedorInput input {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1.9px solid var(--main-blue);
+    border-right: 1.9px solid var(--main-blue);
+    width: 90%;
+    height: 25px;
+    outline: none;
+    padding-left: 10px;
+    color: var(--main-yellow);
+    font-family: var(--main-font);
+}
+
+.contenedorInput input::placeholder {
+    color: var(--main-yellow);
+    opacity: .6;
+}
+
+.listaSeleccion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listaSeleccion select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-family: Montserrat;
+    font-weight: 500;
+    color: var(--main-yellow);
+}
+
+.listaSeleccion select * {
+    background-color: var(--main-blue);
+    border: none;
+    box-shadow: none;
+}
+
+.listaSeleccion select>option {
+    background-color: var(--main-blue);
+    border: none;
+    box-shadow: none;
+    color: var(--main-yellow);
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button button {
+    width: 150px;
+    height: 35px;
+    font-size: 16px;
+    border: none;
+    background-color: var(--main-yellow);
+    color: var(--main-blue);
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: var(--shadows-text);
+}
+
+.contenedorFilter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contenedorFilter p {
+    color: var(--blanco);
+    margin-top: 6px;
+}
+
+.contenedorFilter span {
+    width: 25px;
+    height: 2px;
+    margin: 3px;
+    background-color: var(--main-blue);
+    transition: .4s;
+    cursor: pointer;
+}
+
+.contenedorFilter:hover span {
+    width: 35px;
+}
+
+.contenedorFilter:hover span:nth-child(2) {
+    width: 10px;
+}
+
+.contenedorFilter span:nth-child(2) {
+    width: 15px;
+    height: 2px;
+    margin: 3px;
+    background-color: var(--main-yellow);
+}
+
+.contenedorFilter span:nth-child(3) {
+    width: 10px;
+    height: 2px;
+    margin: 3px;
+    background-color: var(--main-yellow);
+}
+
+.contenedorFilter:hover span:nth-child(3) {
+    width: 5px;
+}
+
+
+/* Contenedor de los items */
+
+main.dashboard {
+    padding: 0px 60px;
+}
+
+main.dashboard h2 {
+    font-size: 18px;
+    font-family: Montserrat;
+    color: var(--main-blue);
+}
+
+main.dashboard .contenedorItems {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-between;
+    align-items: center;
+}
+
+main.dashboard .contenedorItems .contenedorCardsItems {
+    margin-top: 30px;
+    height: 180px;
+    width: 240px;
+    animation: loading .4s infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+main.dashboard .contenedorItems .alto-300 {
+    height: 250px;
+}
+
+main.dashboard .contenedorItems .contenedorCardsItems:hover {
+    transform: scale(1.05);
+    transition: .3s;
+}
+
+main.dashboard .contenedorItems .contenedorCardsItems h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+main.dashboard .contenedorItems .contenedorCardsItems .contenedorStatus {
+    font-size: 11px;
+    margin-top: 8px;
+}
+
+main.dashboard .contenedorItems .contenedorCardsItems .contenedorStatus span {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 8px;
+}
+
+.blue {
+    background-color: #1721FF;
+    color: white;
+}
+
+.yellow {
+    background-color: #FAFF00;
+}
+
+.contenedorTextos .descripcion {
+    font-size: 12px;
+    margin-top: 20px;
+    color: var(--blanco);
+}
+
+.contenedorTextos .fechaLanzamiento {
+    font-size: 10px;
+    margin-top: 12px;
+    font-weight: 500;
+    color: var(--blanco);
+}
+
+.contenedorTextos .fechaLanzamientoContent {
+    font-size: 9px;
+    margin-top: 1px;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+}
+
+main.dashboard .contenedorItems .contenedorCardsItems {
+    background-color: rgba(255, 255, 255, 0.356);
+    box-shadow: 0px 0px 10px rgba(102, 102, 102, 0.13);
+    padding: 20px;
+}
+
+.loading {
+    padding: 20px;
+    margin-top: 30px;
+    height: 180px;
+    width: 180px;
+    background: var(--main-yellow);
+    animation: loading .4s infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::before {
+    content: "";
+    width: 40px;
+    height: 100%;
+    background: linear-gradient(96.4deg, rgba(255, 255, 255, 0) 4.54%, rgba(255, 255, 255, 0.265283) 57.15%, rgba(255, 255, 255, 0) 94.26%);
+    position: absolute;
+    opacity: .4;
+    animation: move 1s infinite;
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateX(200px) rotate(20deg);
+    }
+    100% {
+        transform: translateX(0px) rotate(0deg);
+    }
+}

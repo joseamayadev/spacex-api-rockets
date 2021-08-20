@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space X - API</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>SpaceX</h1>
+        </div>
+
+        <div class="contenedorInput">
+            <input type="text" name="txtInput" id="txtSearch" placeholder="Search Object Information">
+        </div>
+
+        <div class="button">
+            <button id="search">Enviar</button>
+        </div>
+
+        <div class="listaSeleccion">
+            <select id="categoria">
+                <option value="Select">Categories</option>
+                <option value="capsules">Capsules</option>
+                <option value="history">History</option>
+
+            </select>
+        </div>
+
+
+
+        <div class="contenedorFilter">
+            <span></span>
+            <span></span>
+            <span></span>
+            <p>Filter</p>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <h2>Capsules Information</h2>
+        <div class="contenedorItems">
+            <div class="loading">
+            </div>
+            <div class="loading">
+            </div>
+            <div class="loading">
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
