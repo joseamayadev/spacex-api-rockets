@@ -263,7 +263,7 @@ Atentamente,
 [Link al repo](https://github.com/syntaxter/spacex-api-rockets)
 <br>
 
-[Link a la demo](https://syntaxter.github.io/node-dashboard-campaigns/)
+[Link a la demo](https://syntaxter.github.io/spacex-api-rockets/)
 <br>
 
 [Siguemente en las redes como @syntaxter](https://www.instagram.com/syntaxter/)
