@@ -3,6 +3,8 @@ let contenedorCardsData = document.querySelector(".contenedorItems");
 var categorie = document.querySelector('#categoria');
 
 
+
+// Evento principal que escucha el clic en el boton de buscar
 search.addEventListener('click', function(e) {
     let select = categorie.value;
     let string = txtSearch.value;
@@ -28,7 +30,7 @@ search.addEventListener('click', function(e) {
 
 
 
-
+// Funciona asincrona usada para esperar la respuesta desde la API en base a la categoría seleccionada 
 async function busqueda() {
     var categorie = document.querySelector('#categoria').value;
     var spacexApi = await fetch(`https://api.spacexdata.com/v4/${categorie}`);
@@ -37,6 +39,7 @@ async function busqueda() {
 
 
 
+// Funcion que se ejecuta en base al if/else dentro del listener del boton para poder renderizar correctamente los resultados
 function busquedaCapsules(element, string) {
     if (element.serial.match(string)) {
         contenedorCardsData.innerHTML += `

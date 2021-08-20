@@ -1,3 +1,5 @@
+/* Siempre trabaja con variables, creeme son lo mejor */
+
 :root {
     --main-blue: #4E54FF;
     --main-yellow: #F4E236;
@@ -6,6 +8,9 @@
     --main-font: Montserrat;
     --shadows-text: 0px 0px 10px rgba(0, 0, 0, 0.288);
 }
+
+
+/* Reseteo espaciado en los nabegadrores */
 
 * {
     margin: 0px;
@@ -18,6 +23,9 @@ body {
     font-family: Montserrat;
     background-color: var(--main-dark);
 }
+
+
+/* Posicionamiento de los elementos dentro del header */
 
 header {
     height: 200px;
@@ -137,6 +145,9 @@ header {
     cursor: pointer;
 }
 
+
+/* Todos los hover te permiten jugar con los tamaños de las lineas de filter cuando hacer hover */
+
 .contenedorFilter:hover span {
     width: 35px;
 }
@@ -182,6 +193,9 @@ main.dashboard .contenedorItems {
     justify-content: space-between;
     align-items: center;
 }
+
+
+/* Estilos y tamaño para las cartas */
 
 main.dashboard .contenedorItems .contenedorCardsItems {
     margin-top: 30px;
@@ -273,6 +287,9 @@ main.dashboard .contenedorItems .contenedorCardsItems {
     opacity: .4;
     animation: move 1s infinite;
 }
+
+
+/*Ejemplo de animaciones que puedes agregar cuando cliqueas en busqueda para mejorar la experiencia */
 
 @keyframes move {
     0% {
