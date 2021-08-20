@@ -2,29 +2,72 @@
 ![](https://res.cloudinary.com/www-ismyt-com/image/upload/v1628822848/IMAGENES/GITHUB/header-jordan-animation_c1is5k.svg)
 <br>
 
-Este fue uno de mis primeros diseños enfocados en el aprovechamiento de un backend que gestionaba el envío masivo a través de un hosting basado en PHP para obtener un archivo CSV, transformarlo a JSON y luego decodificarlo.
+Hablemos rápidamente sobre como hacer renderizado desde el cliente con Literal Strings (ES6). <br>
+No necesitas manipular un Shadow Dom, o crear custom elements, ni tampoco templates con todas tus funcionalidades porque puedes implementar o inyectar código Javascript directamente desde el cliente y pasarlo como parte del contenido HTML de un elemento contenedor con el famoso innerHTML.
 <br>
 
-Abajo te explico como utilizar este diseño en tu web o relacionarlo con otros mencionandote las clases principales.
-<br><br>
+* **El famoso innerHTML:**
+```
+        contenedorCardsData.innerHTML += `
+                            <div class="contenedorCardsItems">
+                                <h4>${element.serial}</h4>
+                                <div class="contenedorStatus">
+                                    <span class="blue">${element.type}</span>
+                                    <span class="yellow">${element.status}</span>
+                                </div>
 
-### Veamos como se ve el diseño final 🍋
+                                <div class="contenedorTextos">
+                                    <p class="descripcion">${element.last_update}</p>
+                                    <p class="fechaLanzamiento">Fecha de Lanzamiento</p>
+                                    <p class="fechaLanzamientoContent">${element.original_launch}</p>
+                                </div>
+                            </div>
+                            `;
+    } else {
+
+        // Pasar código para mostrar advertencia de que no existen resultados
+
+    }
+}
+```
+
 <br>
 
-![](https://res.cloudinary.com/www-ismyt-com/image/upload/v1628914206/IMAGENES/GITHUB/DASHVOARD-ENVIOS-MASIVOS/github-preview-mini-dashboard-twilio_qmfo9u.png)
+Siendo este un desarrollo que me tomó mas o menos 15 min crearlo, tiene muchas cosas que mejorar por lo que puedes agrear tus propias mejoras, puedes agregar filtros, de hecho el botón del filtro esta listado en la UI solo debes agregarle funcionalidad y practicar ya que el código para pasar peticiones fetch lo tienes acá: 
 
+<br>
+
+```
+async function busqueda() {
+    var categorie = document.querySelector('#categoria').value;
+    var spacexApi = await fetch(`https://api.spacexdata.com/v4/${categorie}`);
+    return spacexApi;
+}
+```
+Tres lineas de código que te permiten obtener la respuesta y poder manejarla como promesa para poder hacer con ella lo que quieras.
+
+<br>
+
+### **Veamos como se ve el diseño final 🍋**
+<br>
+
+![](https://res.cloudinary.com/www-ismyt-com/image/upload/v1629415140/IMAGENES/GITHUB/SPACEX-API/space-x-api-dashboard_cyuf4a.png)
+
+Los elementos amarrillos tienen una pequeña animación de loading, abajo verás el código.
 <br>
 <br>
 
-### 🍋 Y también tiene un campo para introducción de datos
+### 🍋 Solo se basa en un par de parametros que pasas a través de Fetch
 <br>
-Esto lo puedes reciclar como un componente para un framework o simplemente usarlo como JS simple para gestionar peticiones para almacenar datos en una db, json o cualquier lugar donde lo utilices de forma recurrente. 
+Como siempre, trato de dejar el código de la forma mas entendible posible para que puedas reutilizar los estilos en cualquiera de tus frameworks favoritos, finalmente cuando envias la petición a través de fetch puedes manejar directamente esa respuesta, gracias a que el endpoint de SpaceX API te genera el resultado en base al query que estas haciendo y sin usar ní una sola clase. 
+<br>
+<br>
 
-![](https://res.cloudinary.com/www-ismyt-com/image/upload/v1628914558/IMAGENES/GITHUB/DASHVOARD-ENVIOS-MASIVOS/github-preview-mini-dashboard-form_ine9lk.png)
+![](https://res.cloudinary.com/www-ismyt-com/image/upload/v1629415264/IMAGENES/GITHUB/SPACEX-API/space-x-api-results_gpufaf.png)
 
 ## ¿Conocimiento importantes para el desarrollo?
 
-* CSS / Variables
+* fetch API
 ```
 :root {
     --main-bg-color: #0E0E0E;
@@ -36,133 +79,167 @@ Esto lo puedes reciclar como un componente para un framework o simplemente usarl
 }
 ```
 
-* CSS / Display grid
+* CSS ( Grid / Flex / Keyframes )
 ```
-element {
-    display: grid;
-    grid-template-columns: 30% 70%;
-}
-
-```
-
-* CSS / Display Flex 
-
-```
-.contenedorLogo {
+header {
+    height: 200px;
     width: 100%;
+    display: grid;
+    grid-template-columns: 20% 30% 20% 15% 15%;
+    grid-template-rows: 100px;
+}
+
+```
+
+* CSS / Animación previa a la búsqueda 
+
+```
+.loading::before {
+    content: "";
+    width: 40px;
     height: 100%;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-}
-```
-
-* CSS / Mixing CSS Hover Parent to Child
-```
-.contenedorPerfil img:hover~span {
+    background: linear-gradient(96.4deg, rgba(255, 255, 255, 0) 4.54%, rgba(255, 255, 255, 0.265283) 57.15%, rgba(255, 255, 255, 0) 94.26%);
     position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    transform: translateX(7px);
-    background: var(--blue-color);
-    transition: 0.5s;
+    opacity: .4;
+    animation: move 1s infinite;
 }
+
+//el keyframe
+@keyframes move {
+    0% {
+        transform: translateX(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateX(200px) rotate(20deg);
+    }
+    100% {
+        transform: translateX(0px) rotate(0deg);
+    }
+}
+
 ```
 
+* CSS / Estilización de la lista
 
-* CSS / Postion Fixed
 ```
-.pencil {
-    position: fixed;
-    width: 75px;
-    height: 75px;
-    background-color: var(--yellow-color);
-    left: 50px;
-    bottom: 30px;
-    border-radius: 50%;
+.listaSeleccion {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.listaSeleccion select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-family: Montserrat;
+    font-weight: 500;
+    color: var(--main-yellow);
+}
+
+.listaSeleccion select * {
+    background-color: var(--main-blue);
+    border: none;
+    box-shadow: none;
+}
+
+.listaSeleccion select>option {
+    background-color: var(--main-blue);
+    border: none;
+    box-shadow: none;
+    color: var(--main-yellow);
+}
+
+
+```
+
+
+* Javascript / Manejador de eventos principal
+
+```
+
+search.addEventListener('click', function(e) {
+    let select = categorie.value;
+    let string = txtSearch.value;
+    busqueda()
+        .then(data => { return data.json() })
+        .then(res => {
+            // console.log(res);
+            contenedorCardsData.innerHTML = "";
+            if (select == "capsules") {
+                res.forEach(element => {
+                    busquedaCapsules(element, string);
+                })
+            } else if (select == "history") {
+                res.forEach(element => {
+                    buscarHistory(element, string);
+                })
+            }
+
+        });
+
+
+});
+
+```
+
+* CSS / Microinteraction para el filtro
+```
+
+.contenedorFilter span {
+    width: 25px;
+    height: 2px;
+    margin: 3px;
+    background-color: var(--main-blue);
+    transition: .4s;
     cursor: pointer;
 }
-```
 
-
-* CSS / Postion reset styles (inputs)
-```
-.formularioArchivo input {
-    width: 80%;
-    height: 40px;
-    border: none;
-    border-bottom: 3px solid var(--yellow-color);
-    margin: 20px;
-    padding: 10px;
-    background: transparent;
-    outline: none;
-    font-size: 1.3rem;
-    color: #fff;
+.contenedorFilter:hover span {
+    width: 35px;
 }
-```
 
-* CSS / Microinteraction for close button
-```
-#closeOpen::after {
-    content: "";
-    position: absolute;
-    width: 25px;
+.contenedorFilter:hover span:nth-child(2) {
+    width: 10px;
+}
+
+.contenedorFilter span:nth-child(2) {
+    width: 15px;
     height: 2px;
-    background-color: var(--yellow-color);
-    transform: rotate(45deg);
-    transition: .4s;
+    margin: 3px;
+    background-color: var(--main-yellow);
 }
 
-#closeOpen:hover::after {
-    transform: rotate(0deg);
-    transition: .4s;
-}
-
-#closeOpen::before {
-    content: "";
-    position: absolute;
-    width: 25px;
+.contenedorFilter span:nth-child(3) {
+    width: 10px;
     height: 2px;
-    background-color: var(--yellow-color);
-    transform: rotate(-45deg);
-    transition: .4s;
+    margin: 3px;
+    background-color: var(--main-yellow);
 }
 
-#closeOpen:hover::before {
-    transform: rotate(0deg);
-    transition: .4s;
+.contenedorFilter:hover span:nth-child(3) {
+    width: 5px;
 }
-```
-
-
-
-> Sí no conoces CSS te costará mil veces .
-
-<br>
-<br>
-
-## El código en Javascript que permite mostrar/ocultar el formulario de carga de contenido
-
-<br>
-Este formulario solo contiene datos importantes para completar la funcionalidad de carga del elemento principal, este elemento permite que puedas enviar una petición, put, post, delete, get para renderizar los datos desde el servidor tienes el botón principal para procesar todos estos.
-<br>
-
-* Código en js / Frontend
 
 ```
-closeOpen.addEventListener('click', () => {
-    contenedorPopUp.style.display = "none";
-})
 
-pencil.addEventListener('click', () => {
-    contenedorPopUp.style.display = "grid";
-})
 
-```
+
+> Sí no conoces CSS, JS te costará mil veces .
+
+<br>
+<br>
+
+## Este código no ha sido testeado, por lo tanto lo puedes mejorar mil veces mas
+
+<br>
+Parte importante de tu aprendizaje en web design, es la utilización de APIs y manejo del DOM con un enfoque en desarrollo web 2021, evita esmerarte en que tu aplicación sea compatible con IE, ya tiene una muerte anunciada así que mejorar preparate para adentrarte en del desarrollo mordenos, APIS, Frameworks, Javascript Moderno...
+<br>
+
 
 
 
@@ -173,19 +250,23 @@ Es el encarga de cambiar la propiedad de display none a block y viceversa, puede
 Este es mi correo profesional ***jose@joseamaya.tech***, si me escribes te aseguro que tendrás una respuesta.
 
 Atentamente, 
+
+<br>
+
+![Perfil](https://res.cloudinary.com/www-ismyt-com/image/upload/v1628821040/IMAGENES/GITHUB/profile_qcrojr.png)<br>
+<strong style="color:#4E54FF;">José A. Amaya</strong>
+
+
 <br>
 <br>
-[Link al repo](https://github.com/syntaxter/node-dashboard-campaigns)
+
+[Link al repo](https://github.com/syntaxter/spacex-api-rockets)
 <br>
 
 [Link a la demo](https://syntaxter.github.io/node-dashboard-campaigns/)
 <br>
 
 [Siguemente en las redes como @syntaxter](https://www.instagram.com/syntaxter/)
-<br>
-
-![Perfil](https://res.cloudinary.com/www-ismyt-com/image/upload/v1628821040/IMAGENES/GITHUB/profile_qcrojr.png)<br>
-<strong style="color:#4E54FF;">José A. Amaya</strong>
 
 
 
